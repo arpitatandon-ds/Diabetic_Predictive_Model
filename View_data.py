@@ -4,13 +4,14 @@ import numpy as np
 import seaborn as sns 
 import matplotlib.pyplot as plt 
 import streamlit as st
+import os
 import io
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 
 # Step 1: Load the dataset
-df = pd.read_csv(r'Database\diabetes.csv')
+df = pd.read_csv(os.path.join("Database", "diabetes.csv"))
 
 # ---------------- STREAMLIT APP ---------------- #
 st.title("🩺 Diabetes Prediction & Data Analysis")

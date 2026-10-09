@@ -5,6 +5,7 @@ from sklearn.model_selection import train_test_split
 from sklearn import svm
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import accuracy_score
+from sklearn.calibration import CalibratedClassifierCV
 from PIL import Image
 import datetime
 import os
@@ -18,7 +19,7 @@ from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle # type: ign
 # ---------------- Config ----------------
 USER_FILE = "users.json"
 HISTORY_FILE = "prediction_history.csv"
-IMAGE_PATH = r'D:\Internship(yuvaintern)\week1\Project\img.jpeg' 
+IMAGE_PATH = os.path.join("images", "img.jpeg")
 DATA_PATH = os.path.join("Database", "diabetes.csv")        
 
 # ---------------- User persistence ----------------
@@ -121,7 +122,7 @@ if st.session_state.logged_in:
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X)
     X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=1)
-    model = svm.SVC(kernel='linear', probability=True)
+    model = CalibratedClassifierCV(svm.SVC(kernel='linear'), ensemble=False)
     model.fit(X_train, y_train)
     train_acc = accuracy_score(model.predict(X_train), y_train)
     test_acc = accuracy_score(model.predict(X_test), y_test)
@@ -210,7 +211,7 @@ if st.session_state.logged_in:
 
     # ---------------- Predict button ----------------
     if st.sidebar.button("Predict"):
-        input_data = np.array([preg, glucose, bp, skinthickness, insulin, bmi, dpf, age]).reshape(1, -1)
+        input_data = pd.DataFrame([[preg, glucose, bp, skinthickness, insulin, bmi, dpf, age]], columns=X.columns)
         input_scaled = scaler.transform(input_data)
         prediction = model.predict(input_scaled)[0]
         prob = model.predict_proba(input_scaled)[0][1]
