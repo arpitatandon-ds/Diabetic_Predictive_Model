@@ -23,6 +23,26 @@ A machine learning project for diabetes prediction and data analysis, built with
 | Age | Age in years |
 | **Outcome** | Target: `1` = Diabetic, `0` = Not diabetic |
 
+## Screenshots
+
+### Dataset
+![Dataset](images/dataset.jpg)
+
+### Features
+![Features](images/features1.jpg)
+
+### SVM Model
+![SVM Model](images/SVM%20model.jpg)
+
+### Random Forest: Feature Importance
+![Feature Importance](images/rf_feature_importance.png)
+
+### Random Forest: Glucose Distribution
+![Glucose Distribution](images/rf_glucose_distribution.png)
+
+### Random Forest: Correlation Heatmap
+![Correlation Heatmap](images/correlation_heatmap.png)
+
 ## App 1: Diabetes Prediction System (`myapp.py`)
 
 ### Features
