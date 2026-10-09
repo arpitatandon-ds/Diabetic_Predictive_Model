@@ -1,0 +1,7 @@
+venv/
+.venv/
+__pycache__/
+.env
+users.json
+prediction_history.csv
+.ipynb_checkpoints/

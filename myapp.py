@@ -10,16 +10,16 @@ import datetime
 import os
 import io
 import json
-from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer
-from reportlab.lib import colors
-from reportlab.lib.pagesizes import A4
-from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer # type: ignore
+from reportlab.lib import colors # type: ignore
+from reportlab.lib.pagesizes import A4 # type: ignore
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle # type: ignore
 
 # ---------------- Config ----------------
 USER_FILE = "users.json"
 HISTORY_FILE = "prediction_history.csv"
-IMAGE_PATH = 'img.jpeg' 
-DATA_PATH = "diabetes.csv"        
+IMAGE_PATH = r'D:\Internship(yuvaintern)\week1\Project\img.jpeg' 
+DATA_PATH = os.path.join("Database", "diabetes.csv")        
 
 # ---------------- User persistence ----------------
 def load_users():
@@ -240,6 +240,3 @@ if st.session_state.logged_in:
                 st.sidebar.download_button("Download CSV", f, file_name=HISTORY_FILE, mime="text/csv")
         else:
             st.sidebar.error("No history found yet.")
-
-
-
